@@ -19,7 +19,7 @@ use pulse::{Signal, TimeoutError};
 
 /// Run f for at most max_ms, this function will panic if
 /// f is still running.
-pub fn timeout<F>(f: F, max_ms: u32) where F: FnOnce() + Send + 'static {
+pub fn timeout_ms<F>(f: F, max_ms: u32) where F: FnOnce() + Send + 'static {
     let (mut signal, pulse) = Signal::new();
 
     let guard = thread::spawn(|| {
@@ -38,20 +38,20 @@ pub fn timeout<F>(f: F, max_ms: u32) where F: FnOnce() + Send + 'static {
 }
 
 #[test]
-fn timeout_no_timeout() {
-    timeout(|| {}, 100);
+fn timeout_ms_no_timeout_ms() {
+    timeout_ms(|| {}, 100);
 }
 
 #[test]
 #[should_panic]
-fn timeout_spin() {
-    timeout(|| loop {}, 100);
+fn timeout_ms_spin() {
+    timeout_ms(|| loop {}, 100);
 }
 
 #[test]
 #[should_panic]
 fn child_panics() {
-    timeout(|| {
+    timeout_ms(|| {
         panic!("oh no!")
     }, 100);
 }
