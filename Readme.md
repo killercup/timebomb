@@ -1,6 +1,8 @@
 Timebomb
 ========
 
+[![Build Status](https://travis-ci.org/csherratt/timebomb.svg?branch=master)](https://travis-ci.org/csherratt/timebomb)
+
 This is a simple timeout mechanism for Rust that is intended for use with unit tests.
 
 ```rust
