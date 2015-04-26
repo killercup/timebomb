@@ -39,7 +39,7 @@ pub fn timeout_ms<F>(f: F, max_ms: u32) where F: FnOnce() + Send + 'static {
 
 #[test]
 fn timeout_ms_no_timeout_ms() {
-    timeout_ms(|| {}, 100);
+    timeout_ms(|| {}, 1000);
 }
 
 #[test]
